@@ -1,5 +1,7 @@
 ol,
-ol li {
+ul,
+ol li,
+ul li {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -21,6 +23,13 @@ body {
 
 .planet {
   padding: 20px;
+  padding-left: 40px;
+}
+
+.planet h2 {
+  font-size: 38px;
+  line-height: 140px;
+  color: white;
 }
 
 .planet .thumb {
@@ -37,11 +46,8 @@ body {
   height: 100px;
 }
 
-.planet h2 {
+.planet .planetStats {
   color: white;
-  line-height: 140px;
-  font-size: 38px;
-  padding-left: 15px;
 }
 
 .planet.Mercury {
