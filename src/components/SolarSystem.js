@@ -49,7 +49,7 @@ class SolarSystem extends Component {
 
             self.setState({
                 planets: response.body.planets,
-                requestStatus: Request.STATUS_SUCCESS,
+                requestStatus: Request.STATUS_LOADING,
                 requestMessage: 'Planets loaded'
             })
         }

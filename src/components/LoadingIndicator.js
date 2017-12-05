@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
-import Loader from 'halogenium/MoonLoader'
+import { DotLoader } from 'react-spinners';
 
 class LoadingIndicator extends Component {
+
+
+
     render () {
+
+
         return (
             <div className="loadingIndicator">
-                <Loader />
+                <DotLoader color="#ffffff" size="80"/>
+
                 <p>{this.props.message}</p>
             </div>
         )
