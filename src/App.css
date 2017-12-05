@@ -10,8 +10,12 @@ h1, h2, h3, h4, h5 {
   padding: 0;
 }
 
+body {
+  background-color: #06202E;
+}
+
 .solarSystem {
-  padding: 20px;
+  padding: 0px;
   border-radius: 20px
 }
 
@@ -19,9 +23,25 @@ h1, h2, h3, h4, h5 {
   padding: 20px;
 }
 
+.planet .thumb {
+  height: 120px;
+  width: 220px;
+  margin: 20px;
+  border-radius: 20px;
+  text-align: center;
+  background-color: black;
+  float: right;
+}
+
+.planet .thumb img {
+  height: 100px;
+}
+
 .planet h2 {
   color: white;
-  margin-bottom: 20px;
+  line-height: 140px;
+  font-size: 38px;
+  padding-left: 15px;
 }
 
 .planet.Mercury {
@@ -58,6 +78,30 @@ h1, h2, h3, h4, h5 {
 
 .planet.Neptune {
   background-color: #06202E;
+}
+
+.loadingIndicator {
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex: 0 1 auto;
+  -webkit-flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 80px;
+  height: 80px;
+}
+
+.loadingIndicator p{
+  text-align: center;
+  color: white;
 }
 
 

@@ -1,32 +1,9 @@
 
 import React, { Component } from 'react'
 import request from 'superagent'
-
-class LoadingIndicator extends Component {
-    render () {
-        return (
-            <div className="loading">
-                Loading
-            </div>
-        )
-    }
-}
-
-class ErrorResponse extends Component {
-    render () {
-        return (
-            <div className="Error response">
-                Loading
-            </div>
-        )
-    }
-}
-
-
-const REQUEST_STATUS_LOADING = 'REQUEST_STATUS_LOADING'
-const REQUEST_STATUS_SUCCESS = 'REQUEST_STATUS_SUCCESS'
-const REQUEST_STATUS_ERROR = 'REQUEST_STATUS_ERROR'
-
+import LoadingIndicator from './LoadingIndicator'
+import ErrorMessage from './ErrorMessage'
+import Request from '../request/Request'
 
 class SolarSystem extends Component {
 
@@ -34,7 +11,7 @@ class SolarSystem extends Component {
         super(props)
 
         this.state = {
-            requestStatus: REQUEST_STATUS_LOADING,
+            requestStatus: Request.STATUS_LOADING,
             requestMessage: 'Planets loading...',
             planets: []
         }
@@ -51,34 +28,27 @@ class SolarSystem extends Component {
             if (err) {
                 return self.setState({
                     planets: response.body.planets,
-                    requestStatus: REQUEST_STATUS_ERROR,
+                    requestStatus: Request.STATUS_ERROR,
                     requestStatusMessage: err.message
                 })
             }
 
             self.setState({
                 planets: response.body.planets,
-                requestStatus: REQUEST_STATUS_SUCCESS,
+                requestStatus: Request.STATUS_SUCCESS,
                 requestMessage: 'Planets loaded'
             })
         }
     }
 
     render() {
-
-
         let content = {}
-        content[REQUEST_STATUS_LOADING] = (<LoadingIndicator message={this.state.requestMessage} />)
-        content[REQUEST_STATUS_ERROR] = (<ErrorResponse message={this.state.requestMessage} />)
-        content[REQUEST_STATUS_SUCCESS] = (this._renderPlanets())
 
+        content[Request.STATUS_LOADING] = <LoadingIndicator message={this.state.requestMessage} />
+        content[Request.STATUS_ERROR] = <ErrorMessage message={this.state.requestMessage} />
+        content[Request.STATUS_SUCCESS] = this._renderPlanets()
 
-        let contentToRender = content[this.state.requestStatus]
-
-
-        console.log(contentToRender, 'contentToRender')
-
-        return contentToRender
+        return content[this.state.requestStatus]
     }
 
     _renderPlanets() {
@@ -88,6 +58,7 @@ class SolarSystem extends Component {
 
             return (
                 <li className={className} key={planet.name} >
+                    <div className='thumb'><img src={planet.imageUrl} alt={planet.name} /></div>
                     <h2>{planet.name}</h2>
                 </li>
             )
