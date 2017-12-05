@@ -12,42 +12,52 @@ h1, h2, h3, h4, h5 {
 
 .solarSystem {
   padding: 20px;
+  border-radius: 20px
+}
+
+.planet {
+  padding: 20px;
+}
+
+.planet h2 {
+  color: white;
+  margin-bottom: 20px;
 }
 
 .planet.Mercury {
-  background-color: #e6e6e6;
+  background-color: #638192;
 }
 
 .planet.Venus {
-  background-color: #cccccc;
+  background-color: #4D6F82;
 }
 
 .planet.Earth {
-  background-color: #cccccc;
+  background-color: #375D73;
 }
 
 .planet.Mars {
-  background-color: #b3b3b3;
+  background-color: #214B63;
 }
 
 .planet.Jupiter {
-  background-color: #b3b3b3;
+  background-color: #0A344D;
 }
 
 .planet.Saturn {
-   background-color: #b3b3b3;
+   background-color: #0A2F45;
  }
 
-.planet.Neptune {
-  background-color: #b3b3b3;
-}
-
-.planet.Pluto {
-  background-color: #b3b3b3;
+.planet.Uranus {
+  background-color: #092A3E;
 }
 
 .planet.Uranus {
-  background-color: #b3b3b3;
+  background-color: #082536;
+}
+
+.planet.Neptune {
+  background-color: #06202E;
 }
 
 

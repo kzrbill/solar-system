@@ -88,7 +88,7 @@ class SolarSystem extends Component {
 
             return (
                 <li className={className} key={planet.name} >
-                    <h1>{planet.name}</h1>
+                    <h2>{planet.name}</h2>
                 </li>
             )
         })
