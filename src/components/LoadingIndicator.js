@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Loader from 'halogen/MoonLoader'
+import Loader from 'halogenium/MoonLoader'
 
 class LoadingIndicator extends Component {
     render () {
