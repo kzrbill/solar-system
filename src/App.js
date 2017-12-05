@@ -6,10 +6,8 @@ import SolarSystem from './components/SolarSystem';
 class App extends Component {
   render() {
     return (
-
           <SolarSystem />
-
-    );
+    )
   }
 }
 

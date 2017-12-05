@@ -1,28 +1,55 @@
-.App {
-  text-align: center;
+ol,
+ol li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  padding: 0;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
+.solarSystem {
   padding: 20px;
-  color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
+.planet.Mercury {
+  background-color: #e6e6e6;
 }
 
-.App-intro {
-  font-size: large;
+.planet.Venus {
+  background-color: #cccccc;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.planet.Earth {
+  background-color: #cccccc;
 }
+
+.planet.Mars {
+  background-color: #b3b3b3;
+}
+
+.planet.Jupiter {
+  background-color: #b3b3b3;
+}
+
+.planet.Saturn {
+   background-color: #b3b3b3;
+ }
+
+.planet.Neptune {
+  background-color: #b3b3b3;
+}
+
+.planet.Pluto {
+  background-color: #b3b3b3;
+}
+
+.planet.Uranus {
+  background-color: #b3b3b3;
+}
+
+
+
+

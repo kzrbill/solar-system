@@ -1,51 +1,102 @@
 
 import React, { Component } from 'react'
-import { CardStack, Card } from 'react-cardstack'
 import request from 'superagent'
 
-class SolarSystem extends Component {
-    componentWillMount() {
+class LoadingIndicator extends Component {
+    render () {
+        return (
+            <div className="loading">
+                Loading
+            </div>
+        )
+    }
+}
 
+class ErrorResponse extends Component {
+    render () {
+        return (
+            <div className="Error response">
+                Loading
+            </div>
+        )
+    }
+}
+
+
+const REQUEST_STATUS_LOADING = 'REQUEST_STATUS_LOADING'
+const REQUEST_STATUS_SUCCESS = 'REQUEST_STATUS_SUCCESS'
+const REQUEST_STATUS_ERROR = 'REQUEST_STATUS_ERROR'
+
+
+class SolarSystem extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            requestStatus: REQUEST_STATUS_LOADING,
+            requestMessage: 'Planets loading...',
+            planets: []
+        }
+    }
+
+    componentWillMount() {
         request
             .get('http://solarsystemapi.azurewebsites.net/api/planets')
             .end(onFetchedPlanets)
 
-        function onFetchedPlanets(err, planets) {
-            console.log(planets, 'planets')
+        const self = this
+        function onFetchedPlanets(err, response) {
+
+            if (err) {
+                return self.setState({
+                    planets: response.body.planets,
+                    requestStatus: REQUEST_STATUS_ERROR,
+                    requestStatusMessage: err.message
+                })
+            }
+
+            self.setState({
+                planets: response.body.planets,
+                requestStatus: REQUEST_STATUS_SUCCESS,
+                requestMessage: 'Planets loaded'
+            })
         }
     }
 
     render() {
-        const solarStack = this._renderSolarStack()
-        return (
-            <div className="solarSystem">
-                {solarStack}
-            </div>
-        )
+
+
+        let content = {}
+        content[REQUEST_STATUS_LOADING] = (<LoadingIndicator message={this.state.requestMessage} />)
+        content[REQUEST_STATUS_ERROR] = (<ErrorResponse message={this.state.requestMessage} />)
+        content[REQUEST_STATUS_SUCCESS] = (this._renderPlanets())
+
+
+        let contentToRender = content[this.state.requestStatus]
+
+
+        console.log(contentToRender, 'contentToRender')
+
+        return contentToRender
     }
 
-    _renderSolarStack() {
+    _renderPlanets() {
+        const planets = this.state.planets.map(planet => {
+
+            const className = `planet ${planet.name}`
+
+            return (
+                <li className={className} key={planet.name} >
+                    <h1>{planet.name}</h1>
+                </li>
+            )
+        })
+
         return (
-            <CardStack
-                height={600}
-                width={800}
-                background='#f8f8f8'
-                hoverOffset={25}>
-
-                <Card background='#CCCCCC'>
-                    <h1>Mercury</h1>
-                </Card>
-
-                <Card background='#DDDDDD'>
-                    <h1>Venus</h1>
-                </Card>
-
-                <Card background='#EEEEEE'>
-                    <h1>Earth</h1>
-                </Card>
-
-
-            </CardStack>
+            <ol className="solarSystem">
+                {planets}
+            </ol>
         )
     }
 }
