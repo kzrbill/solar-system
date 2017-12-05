@@ -2,22 +2,13 @@
 import React, { Component } from 'react'
 import request from 'superagent'
 import LoadingIndicator from './LoadingIndicator'
+import Planet from './Planet'
 import ErrorMessage from './ErrorMessage'
 import Request from '../request/Request'
 
-class PlanetStats extends Component {
-    render() {
-        const stats = this.props.stats.map(stat => {
-            return <li><strong>{stat.name}</strong> {stat.value}</li>
-        })
 
-        return (
-            <ul className="planetStats">
-                <li>{stats}</li>
-            </ul>
-        )
-    }
-}
+
+
 
 class SolarSystem extends Component {
 
@@ -49,7 +40,7 @@ class SolarSystem extends Component {
 
             self.setState({
                 planets: response.body.planets,
-                requestStatus: Request.STATUS_LOADING,
+                requestStatus: Request.STATUS_SUCCESS,
                 requestMessage: 'Planets loaded'
             })
         }
@@ -67,15 +58,8 @@ class SolarSystem extends Component {
 
     _renderPlanets() {
         const planets = this.state.planets.map(planet => {
-
-            const className = `planet ${planet.name}`
-
             return (
-                <li className={className} key={planet.name} >
-                    <div className='thumb'><img src={planet.imageUrl} alt={planet.name} /></div>
-                    <h2>{planet.name}</h2>
-                    <PlanetStats stats={planet.stats} />
-                </li>
+                <Planet planet={planet} />
             )
         })
 
